@@ -16,9 +16,13 @@ export default {
   methods: {
     add() {
       this.value ++;
+
+      this.$emit('add', this.value);
     },
     subtraction() {
       this.value --;
+
+      this.$emit('subtraction', this.value);
     }
   }
 }
