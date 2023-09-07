@@ -1,6 +1,6 @@
 <template>
   <div>
-    <div id="result">{{ value }}</div>
+<!--    <div id="result">{{ value }}</div>-->
     <button id="add" @click="add">+</button>
     <button id="subtraction" @click="subtraction">-</button>
   </div>
@@ -8,21 +8,31 @@
 
 <script>
 export default {
+  props: {
+    value: {
+      type: Number,
+      default: 0
+    }
+  },
   data() {
     return {
-      value: 0
+      localValue: this.value
     }
+  },
+  computed: {
+
   },
   methods: {
     add() {
-      this.value ++;
-
-      this.$emit('add', this.value);
+      this.updateValue(+this.value + 1);
     },
     subtraction() {
-      this.value --;
+      this.updateValue(+this.value - 1);
+    },
+    updateValue(value) {
+      this.localValue = value;
 
-      this.$emit('subtraction', this.value);
+      this.$emit('updateValue', +value);
     }
   }
 }

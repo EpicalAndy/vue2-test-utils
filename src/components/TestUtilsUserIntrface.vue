@@ -1,9 +1,10 @@
 <template>
   <div>
-    <test-utils-counter @add="updateValue"></test-utils-counter>
+    <test-utils-counter :value="value"
+                        @updateValue="updateValue($event)"></test-utils-counter>
 
     <div id="result"
-          class="result">
+         class="result">
       Value: {{ value }}
     </div>
   </div>
@@ -21,15 +22,15 @@ export default {
   },
   methods: {
     updateValue(event) {
-      this.value = event;
+      this.value = +event;
     }
   }
 }
 </script>
 
 <style scoped>
-  .result {
-    margin-top: 1em;
-    border: steelblue solid 1px;
-  }
+.result {
+  margin-top: 1em;
+  border: steelblue solid 1px;
+}
 </style>
